@@ -1,6 +1,7 @@
 import java.awt.*;       
 import java.awt.event.*; 
 import java.io.*;
+
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -22,8 +23,13 @@ public class MonInterface extends JFrame implements ActionListener, MouseListene
 	private JPanel designdownload;	
 	private JPanel disignBrep_source;
 	private JPanel disignTrep_source;
-	private JPanel disign5_1;
+	//private JPanel disign5_1;
+	//private Box disign5_2;
 	private Box disign5_3;
+	private Box disignNom;
+	private Box disignDate;
+	//private JPanel flowNom;
+	//private JPanel flowDate;
 	private JPanel designBenregistrer;
 		
 	private JPanel conteneurNiv1_1;
@@ -59,8 +65,8 @@ public class MonInterface extends JFrame implements ActionListener, MouseListene
 	private JPanel conteneurNiv6_1;
 	private JPanel conteneurNiv6_2;
 	private Box conteneurNiv6_3;
-	private JPanel conteneurNiv6_4;
-	private JPanel conteneurNiv6_5;
+	private Box conteneurNiv6_4;
+	//private Box conteneurNiv6_5;
 	private JPanel conteneurNiv7_1;
 		
 
@@ -125,7 +131,9 @@ public class MonInterface extends JFrame implements ActionListener, MouseListene
     private JLabel Trep_source;
     private JLabel Trep_ip2;
     private JLabel Trep_ip;
-    private JTextField Date, Lieu, send;
+    private JLabel Trep_Nom;
+    private JLabel Trep_Date;
+    private JTextField Date, Nom, send;
     
 	private ImageIcon robot = new ImageIcon("Images/robot3.png");
     private JLabel robot_lab = new JLabel(robot);
@@ -169,10 +177,16 @@ public class MonInterface extends JFrame implements ActionListener, MouseListene
 				conteneurNiv3_1 = new JPanel();
 					conteneurNiv4_1 = new JPanel();
 					conteneurNiv4_2 = new JPanel();
-						disign5_1 = new JPanel();
+						//disign5_1 = new JPanel();
 						conteneurNiv5_1 = new JPanel();
-							conteneurNiv6_4 = new JPanel();
-							conteneurNiv6_5 = new JPanel();
+							conteneurNiv6_4 = Box.createHorizontalBox();
+							//conteneurNiv6_5 = Box.createHorizontalBox();
+								//flowNom = new JPanel();
+								//flowDate = new JPanel();
+								disignNom = Box.createHorizontalBox();
+								disignDate = Box.createHorizontalBox();
+								//disignDate.setPreferredSize(new Dimension(0, 0));
+								//disign5_2 = Box.createVerticalBox();
 								conteneurNiv5_2 = new JPanel();
 								disign5_3 = Box.createHorizontalBox();
 								conteneurNiv5_3 = new JPanel();
@@ -221,8 +235,11 @@ public class MonInterface extends JFrame implements ActionListener, MouseListene
 				conteneurNiv4_2.setLayout(new BorderLayout());
 				conteneurNiv4_2.setLayout(new GridLayout(2,2));
 					conteneurNiv5_1.setLayout(new BorderLayout());
-						conteneurNiv6_5.setLayout(new BorderLayout());
-						conteneurNiv6_4.setLayout(new BorderLayout());
+						//conteneurNiv6_5.setLayout(new BorderLayout());
+						//conteneurNiv6_4.setLayout(new BorderLayout());
+							//flowNom.setLayout(new FlowLayout());
+							//flowNom.setPreferredSize(new Dimension(0, 50));
+							//flowDate.setLayout(new FlowLayout());
 							conteneurNiv5_2.setLayout(new BorderLayout());
 							//disign5_3.setLayout(new BoxLayout(connexion_deconnexion, ));
 							conteneurNiv5_3.setLayout(new BorderLayout());
@@ -293,6 +310,7 @@ public class MonInterface extends JFrame implements ActionListener, MouseListene
 		fichiers = new JComboBox<String>();
 		fichiers.addItem("sélectionner fichier");
 		ip = new JTextField("192.168.1.129");
+		ip.setPreferredSize(new Dimension(0, 20));
 		ip2 = new JTextField("192.168.1.129");
 		//lister_ports();
 		
@@ -307,11 +325,15 @@ public class MonInterface extends JFrame implements ActionListener, MouseListene
 		
 		
 		Trep_source = new JLabel("Fichier à charger");
-		Trep_ip2 = new JLabel("@ip");
-		Trep_ip = new JLabel("@ip");
+		Trep_ip2 = new JLabel("@ip: ");
+		Trep_ip = new JLabel("@ip: ");
+		Trep_Nom = new JLabel("Nom:  ");
+		Trep_Date = new JLabel("Date: ");
 		
-		Date = new JTextField("Date");
-		Lieu = new JTextField("Lieu");		
+		Date = new JTextField("");
+		Date.setPreferredSize(new Dimension(0, 20));
+		Nom = new JTextField("");	
+		Nom.setPreferredSize(new Dimension(0, 20));
 		send = new JTextField();
 		
 		ms = new JLabel("ms");
@@ -349,17 +371,31 @@ public class MonInterface extends JFrame implements ActionListener, MouseListene
 																	
 					conteneurNiv3_1.add(conteneurNiv4_2, BorderLayout.CENTER);						
 				    
-				    	conteneurNiv4_2.add(disign5_1);
-				    		disign5_1.add(conteneurNiv5_1);
-				    			conteneurNiv5_1.add(conteneurNiv6_5, BorderLayout.WEST);
-				    			conteneurNiv5_1.add(conteneurNiv6_4, BorderLayout.CENTER);
-				    				conteneurNiv6_5.add(Trep_ip, BorderLayout.CENTER);
-				    				conteneurNiv6_4.add(ip, BorderLayout.CENTER);
+				    	conteneurNiv4_2.add(conteneurNiv5_1);
+				    		//disign5_1.add(conteneurNiv5_1);
+				    			conteneurNiv5_1.add(conteneurNiv6_4, BorderLayout.NORTH);
+				    			//conteneurNiv5_1.add(conteneurNiv6_4, BorderLayout.CENTER);
+				    				//conteneurNiv6_5.add(Trep_ip, BorderLayout.CENTER);
+				    				conteneurNiv6_4.add(Trep_ip);
+				    				conteneurNiv6_4.add(ip);
+				    				
 				    		
 				    	conteneurNiv4_2.add(conteneurNiv5_2);				   		
 				   		
-				   			conteneurNiv5_2.add(Date, BorderLayout.NORTH);
-				   			conteneurNiv5_2.add(Lieu, BorderLayout.SOUTH);
+				    	conteneurNiv5_2.add(disignNom, BorderLayout.NORTH);
+				    		//disign5_2.add(flowNom);
+				    		//flowNom.add(disignNom);
+				    			disignNom.add(Trep_Nom);
+				    			disignNom.add(Nom);
+				    			
+				    	conteneurNiv5_2.add(disignDate, BorderLayout.SOUTH);		
+				    		//disign5_2.add(flowDate);
+				    		//flowDate.add(Box.createVerticalStrut(100));
+				    		//flowDate.add(disignDate);
+				    			disignDate.add(Trep_Date);
+				    			disignDate.add(Date);
+				    			
+				    		
 				   	
 				   		conteneurNiv4_2.add(conteneurNiv5_3);
 				   			conteneurNiv5_3.add(disign5_3, BorderLayout.CENTER);
@@ -387,7 +423,7 @@ public class MonInterface extends JFrame implements ActionListener, MouseListene
 				   	conteneurNiv3_2.add(conteneurNiv4_4, BorderLayout.CENTER);						
 						    
 				    	conteneurNiv4_4.add(conteneurNiv5_5);
-				    		conteneurNiv5_5.add(conteneurNiv6_1, BorderLayout.CENTER);
+				    		conteneurNiv5_5.add(conteneurNiv6_1, BorderLayout.SOUTH);
 				    			conteneurNiv6_1.add(disignBrep_source);
 				    				disignBrep_source.add(Brep_source);
 				    			
@@ -396,7 +432,7 @@ public class MonInterface extends JFrame implements ActionListener, MouseListene
 				    				conteneurNiv7_1.add(aff_lieu, BorderLayout.SOUTH);
 					    
 				    	conteneurNiv4_4.add(conteneurNiv5_6);				   		
-				    		conteneurNiv5_6.add(disignTrep_source, BorderLayout.WEST);
+				    		conteneurNiv5_6.add(disignTrep_source, BorderLayout.SOUTH);
 				    			disignTrep_source.add(Trep_source);
 				    		
 				    		
@@ -418,7 +454,7 @@ public class MonInterface extends JFrame implements ActionListener, MouseListene
 				    		
 				   
 				    conteneurNiv2_2.addTab("Horsligne", conteneurNiv3_2); 
-				    conteneurNiv2_2.addTab("Rasberry-Pi", conteneurNiv3_7); 
+				    conteneurNiv2_2.addTab("Raspberry-Pi", conteneurNiv3_7); 
 				    conteneurNiv5_8.add(hrLigne, BorderLayout.NORTH);
 				    conteneurNiv5_8.add(conteneurNiv2_2, BorderLayout.CENTER);
 		    		conteneurNiv5_8.add(conteneurNiv5_7, BorderLayout.SOUTH);
@@ -613,7 +649,7 @@ public class MonInterface extends JFrame implements ActionListener, MouseListene
 				connexion_deconnexion.setText("Déconnexion");
 				filemessages = new ArrayList<Message>();
 				fabrique = new Fabrique(filemessages);
-		    	socketTCP = new Client();
+		    	socketTCP = new Client(ip.getText());
 		    	//instanciation de MAJ_Interface en mode temps_réel (true)
 		    	maj_interface = new MAJ_Interface(this, filemessages, true);
 				
@@ -704,9 +740,15 @@ public class MonInterface extends JFrame implements ActionListener, MouseListene
 		}
 		if(event.getSource() == Benregistrer){
 			venregistrer = !venregistrer;
-			if(venregistrer){
-				penregistrer.setIcon(new ImageIcon("Images/cercle_rouge.png"));
-				new SendTCP(socketTCP.getSocket(), "enregistrer-test.xml");
+			if(socketTCP!=null){
+				if(venregistrer){
+					penregistrer.setIcon(new ImageIcon("Images/cercle_rouge.png"));
+					new SendTCP(socketTCP.getSocket(), "enregistrer-test");
+				}
+				if(!venregistrer){
+					penregistrer.setIcon(new ImageIcon("Images/carre_noire.png"));
+					new SendTCP(socketTCP.getSocket(), "stop");
+				}
 			}
 			if(!venregistrer){
 				penregistrer.setIcon(new ImageIcon("Images/carre_noire.png"));
@@ -1071,33 +1113,61 @@ public class MonInterface extends JFrame implements ActionListener, MouseListene
 	//permet de desactiver certains elements de l'interface lorsque l'on est en mode temps reel
 	private void tempsreel_active() {
 		//System.out.println("temps reel actif");
-		conteneurNiv2_2.setEnabled(false);
+		connexion.setEnabled(false);
+		//conteneurNiv2_2.setEnabled(false);
 		Brep_source.setEnabled(false);
 		BLecture.setEnabled(false);
 		BPause.setEnabled(false);
 		BSuivant.setEnabled(false);
 		BPrecedent.setEnabled(false);
+		ip2.setEnabled(false);
+		download.setEnabled(false);
+		fichiers.setEnabled(false);
+		Trep_source.setEnabled(false);
+	    Trep_ip2.setEnabled(false);
+	    aff_date.setEnabled(false);
+		aff_lieu.setEnabled(false);
 		
+		Bsend.setEnabled(true);
+		ip.setEnabled(true);
 		connexion_deconnexion.setEnabled(true);
 		Benregistrer.setEnabled(true);
 		Date.setEnabled(true);
-		Lieu.setEnabled(true);
+		Nom.setEnabled(true);
+		Trep_ip.setEnabled(true);
+	    Trep_Nom.setEnabled(true);
+	    Trep_Date.setEnabled(true);
+	    send.setEnabled(true);
 	}
 	
 	//permet de desactiver certains elements de l'interface lorsque l'on est en mode hors ligne
 	private void horsligne_active(){
 		//System.out.println("hors ligne actif");
-		conteneurNiv2_2.setEnabled(true);
+		connexion.setEnabled(true);	
+		//conteneurNiv2_2.setEnabled(true);
 		Brep_source.setEnabled(true);
 		BLecture.setEnabled(true);
 		BPause.setEnabled(true);
 		BSuivant.setEnabled(true);
 		BPrecedent.setEnabled(true);
-
+		ip2.setEnabled(true);
+		download.setEnabled(true);
+		fichiers.setEnabled(true);
+		Trep_source.setEnabled(true);
+	    Trep_ip2.setEnabled(true);
+	    aff_date.setEnabled(true);
+		aff_lieu.setEnabled(true);
+		
+		Bsend.setEnabled(false);
+		ip.setEnabled(false);
 		connexion_deconnexion.setEnabled(false);
-		Benregistrer.setEnabled(true);
+		Benregistrer.setEnabled(false);
 		Date.setEnabled(false);
-		Lieu.setEnabled(false);
+		Nom.setEnabled(false);
+		Trep_ip.setEnabled(false);
+	    Trep_Nom.setEnabled(false);
+	    Trep_Date.setEnabled(false);
+	    send.setEnabled(false);
 	}
 
 }	
