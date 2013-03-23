@@ -77,6 +77,11 @@ public class Fabrique {
 	}
 	
 	
+	public long getDebut() {
+		return debut;
+	}
+
+
 	public ArrayList<Message> getFilemessages() {
 		return filemessages;
 	}
